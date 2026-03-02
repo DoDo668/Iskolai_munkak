@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UnitTestGyakorlo
+{
+    public class Teglalap
+    {
+        public double a { get; set; }
+        public double b { get; set; }
+
+        public void Init(double aOldal, double bOldal)
+        {
+            a = aOldal;
+            b = bOldal;
+        }
+        public double kerulet()
+        {
+            return (a + b) * 2;
+        }
+
+        public double terulet()
+        {
+            return a * b;
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Teglalap t = new Teglalap();
+            t.Init(6, 7);
+            Console.WriteLine("A: " + t.a);
+            Console.WriteLine("B: " + +t.b);
+            Console.WriteLine("A kerület: " + t.kerulet());
+            Console.WriteLine("A terület: " + t.terulet());
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TEST
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+
+namespace UnitTestGyakorlo
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void teglalapLetrehozasTeszt()
+        {
+            //arrange - előkészítés
+            Teglalap K = new Teglalap();
+
+            //act - szimulálás
+            K.Init(6, 7);
+
+            //assert - ellenőrzés
+            Assert.AreEqual(6, K.a);
+            Assert.AreEqual(7, K.b);
+        }
+
+        [TestMethod]
+        public void teglalapTeruletTeszt()
+        {
+            Teglalap teglalap = new Teglalap();
+            double szuksegesTerulet = 42;
+            teglalap.Init(6, 7);
+
+            double terulet = teglalap.terulet();
+
+            Assert.AreEqual(terulet, szuksegesTerulet);
+        }
+
+        [TestMethod]
+
+        public void teglalapTesztKerulet()
+        {
+            Teglalap ker = new Teglalap();
+            double szuksegesKerulet = 26;
+            ker.Init(6, 7);
+
+            double kerulet = ker.kerulet();
+
+            Assert.AreEqual(szuksegesKerulet, kerulet);
+        }
+    }
+}
